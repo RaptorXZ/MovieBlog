@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/head.ejs') %>
+<body>
+    <%- include('./partials/nav.ejs') %>
+
+    <div>
+        <h2>All Movies</h2>
+
+        <% if (movies.length > 0) { %>
+            <% movies.forEach(movie => { %>
+                <div class="single">
+                    <a href="/movies/<%= movie._id %>">
+                        <h3><%= movie.title %></h3>
+                        <p><%= movie.genre %></p>
+                        <p>Published: <%= movie.published %></p>
+                    </a>
+                </div>
+            <% }) %>
+        <% } else { %>
+            <p>There are no movies to display...</p>
+        <% } %>
+    </div>
+
+    <%- include('./partials/footer.ejs') %>
+</body>
+</html>
