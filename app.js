@@ -25,14 +25,14 @@ app.get('/', (req, res) => {
 });
 
 app.get('/about', (req, res) => {
-    res.render('../docs/about', { title: 'About' });
+    res.render('about', { title: 'About' });
 });
 
 // database routes
 app.get('/movies', (req, res) => {
     Movie.find()
         .then((result) => {
-            res.render('../docs/index', { title: 'All movies', movies: result });
+            res.render('index', { title: 'All movies', movies: result });
         })
         .catch((err) => {
             console.log(err);
@@ -64,14 +64,14 @@ app.delete('/movies/:id', (req, res) => {
 });
 
 app.get('/movies/create', (req, res) => {
-    res.render('../docs/create', { title: 'Add a new movie' });
+    res.render('create', { title: 'Add a new movie' });
 });
 
 app.get('/movies/:id', (req, res) => {
     const id = req.params.id;
     Movie.findById(id)
         .then(result => {
-            res.render('../docs/details', { movie: result, title: 'Movie details' });
+            res.render('details', { movie: result, title: 'Movie details' });
         })
         .catch(err => {
             console.log(err);
@@ -95,5 +95,5 @@ app.get('/about-us', (req, res) => {
 
 // 404 page
 app.use((req, res) => {
-    res.status(404).render('../docs/404', { title: '404 Not Found' });
+    res.status(404).render('404', { title: '404 Not Found' });
 });
